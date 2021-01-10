@@ -1,12 +1,12 @@
 ---
-- name: Delete default config
+- name: delete default config
   become: true
+  chenged_when: false
   file:
     state: 'absent'
     path: '/etc/postfix/sasl/'
-  chenged_when: false
 
-- name: Template main.cf
+- name: emplate main.cf
   become: true
   template:
     src: 'templates/main.cf.j2'
