@@ -1,3 +1,30 @@
 ---
 - include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
+
+- name: Ensure postfix is installed.
+  become: true
+  package:
+    name:
+      - postfix
+      - postfix-mysql
+    state: present
+
+
+- name: create postfix templates
+  include_tasks: templates.yml
+
+- name: create dhparam
+  become: true
+  openssl_dhparam:
+    path: '/etc/postfix/dh2048.pem'
+    size: 2048
+
+
+
+- name: Ensure postfix is started and enabled at boot.
+  become: true
+  service:
+    name: postfix
+    state: "{{ postfix__service_state }}"
+    enabled: "{{ postfix__service_enabled }}"
