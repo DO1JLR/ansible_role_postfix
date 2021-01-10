@@ -10,6 +10,8 @@
       - postfix-mysql
     state: present
 
+- name: cleanup some not needed default postfix files
+  include_tasks: cleanup.yml
 
 - name: create postfix templates
   include_tasks: templates.yml

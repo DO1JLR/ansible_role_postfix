@@ -1,11 +1,4 @@
 ---
-- name: delete default config
-  become: true
-  chenged_when: false
-  file:
-    state: 'absent'
-    path: '/etc/postfix/sasl/'
-
 - name: emplate main.cf
   become: true
   template:
