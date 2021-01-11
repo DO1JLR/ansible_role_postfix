@@ -2,6 +2,9 @@
 - include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
 
+- name: make sure group is present
+  include_tasks: group.yml
+
 - name: Ensure postfix is installed.
   become: true
   package:

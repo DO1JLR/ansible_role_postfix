@@ -6,7 +6,7 @@
     state: 'directory'
     recurse: true
     owner: "{{ postfix__user }}"
-    group: 'root'
+    group: "{{ postfix__group }}"
 
 - name: template of main.cf
   become: true
@@ -15,7 +15,7 @@
     dest: '/etc/postfix/main.cf'
     mode: '0644'
     owner: "{{ postfix__user }}"
-    group: 'root'
+    group: "{{ postfix__group }}"
 
 - name: create postfix master.cf
   become: true
@@ -23,7 +23,7 @@
     src: 'files/master.cf'
     dest: '/etc/postfix/master.cf'
     owner: "{{ postfix__user }}"
-    group: 'root'
+    group: "{{ postfix__group }}"
 
 - name: create postfix submission_header_cleanup
   become: true
@@ -31,7 +31,7 @@
     src: 'files/submission_header_cleanup'
     dest: '/etc/postfix/submission_header_cleanup'
     owner: "{{ postfix__user }}"
-    group: 'root'
+    group: "{{ postfix__group }}"
 
 - name: template of accounts.cf
   become: true
@@ -40,5 +40,50 @@
     dest: '/etc/postfix/sql/accounts.cf'
     mode: '0644'
     owner: "{{ postfix__user }}"
-    group: 'root'
+    group: "{{ postfix__group }}"
+
+- name: template of aliases.cf
+  become: true
+  template:
+    src: 'templates/sql/aliases.cf.j2'
+    dest: '/etc/postfix/sql/aliases.cf'
+    mode: '0644'
+    owner: "{{ postfix__user }}"
+    group: "{{ postfix__group }}"
+
+- name: template of domains.cf
+  become: true
+  template:
+    src: 'templates/sql/domains.cf.j2'
+    dest: '/etc/postfix/sql/domains.cf'
+    mode: '0644'
+    owner: "{{ postfix__user }}"
+    group: "{{ postfix__group }}"
+
+- name: template of recipient-access.cf
+  become: true
+  template:
+    src: 'templates/sql/recipient-access.cf.j2'
+    dest: '/etc/postfix/sql/recipient-access.cf'
+    mode: '0644'
+    owner: "{{ postfix__user }}"
+    group: "{{ postfix__group }}"
+
+- name: template of sender-login-maps.cf
+  become: true
+  template:
+    src: 'templates/sql/sender-login-maps.cf.j2'
+    dest: '/etc/postfix/sql/sender-login-maps.cf'
+    mode: '0644'
+    owner: "{{ postfix__user }}"
+    group: "{{ postfix__group }}"
+
+- name: template of tls-policy.cf
+  become: true
+  template:
+    src: 'templates/sql/tls-policy.cf.j2'
+    dest: '/etc/postfix/sql/tls-policy.cf'
+    mode: '0644'
+    owner: "{{ postfix__user }}"
+    group: "{{ postfix__group }}"
 

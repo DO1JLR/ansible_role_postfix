@@ -1,5 +1,6 @@
 ---
-postfix__user: 'vmail'
+postfix__user: 'root'
+postfix__group: 'postfix'
 postfix__db_user: "{{ postfix__user }}"
 postfix__db_password: 'super$ecretPa$$wort'
 postfix__db_name: 'vmail'
