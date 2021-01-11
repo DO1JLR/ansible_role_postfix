@@ -1,9 +1,44 @@
 ---
-- name: emplate main.cf
+- name: mkdir /etc/postfix/sql
+  become: true
+  file:
+    path: '/etc/postfix/sql'
+    state: 'directory'
+    recurse: true
+    owner: "{{ postfix__user }}"
+    group: 'root'
+
+- name: template of main.cf
   become: true
   template:
     src: 'templates/main.cf.j2'
     dest: '/etc/postfix/main.cf'
     mode: '0644'
+    owner: "{{ postfix__user }}"
+    group: 'root'
 
+- name: create postfix master.cf
+  become: true
+  copy:
+    src: 'files/master.cf'
+    dest: '/etc/postfix/master.cf'
+    owner: "{{ postfix__user }}"
+    group: 'root'
+
+- name: create postfix submission_header_cleanup
+  become: true
+  copy:
+    src: 'files/submission_header_cleanup'
+    dest: '/etc/postfix/submission_header_cleanup'
+    owner: "{{ postfix__user }}"
+    group: 'root'
+
+- name: template of accounts.cf
+  become: true
+  template:
+    src: 'templates/sql/accounts.cf.j2'
+    dest: '/etc/postfix/sql/accounts.cf'
+    mode: '0644'
+    owner: "{{ postfix__user }}"
+    group: 'root'
 

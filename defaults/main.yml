@@ -1,4 +1,10 @@
 ---
+postfix__user: 'vmail'
+postfix__db_user: "{{ postfix__user }}"
+postfix__db_password: 'super$ecretPa$$wort'
+postfix__db_name: 'vmail'
+postfix__db_host: 'unix:/run/mysqld/mysqld.sock'
+
 postfix__service_state: started
 postfix__service_enabled: true
 postfix__myhostname: "{{ ansible_fqdn }}"
