@@ -7,6 +7,7 @@
     recurse: true
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+    mode: '0755'
 
 - name: template of main.cf
   become: true
@@ -24,6 +25,7 @@
     dest: '/etc/postfix/master.cf'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+    mode: '0644'
 
 - name: create postfix submission_header_cleanup
   become: true
@@ -32,6 +34,7 @@
     dest: '/etc/postfix/submission_header_cleanup'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+    mode: '0644'
 
 - name: template of accounts.cf
   become: true
