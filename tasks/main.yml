@@ -24,12 +24,11 @@
   openssl_dhparam:
     path: '/etc/postfix/dh2048.pem'
     size: 2048
+  notify: systemctl restart postfix
 
-
-
-- name: Ensure postfix is started and enabled at boot.
+- name: Ensure postfix is started and enabled at boot
   become: true
   service:
-    name: postfix
+    name: 'postfix.service'
     state: "{{ postfix__service_state }}"
     enabled: "{{ postfix__service_enabled }}"

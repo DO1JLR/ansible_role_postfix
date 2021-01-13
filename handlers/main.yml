@@ -1,0 +1,7 @@
+---
+- name: systemctl restart postfix
+  become: true
+  service:
+    name: 'postfix.service'
+    state: 'restarted.service'
+  when: postfix__service_enabled

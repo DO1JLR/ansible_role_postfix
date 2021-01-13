@@ -17,6 +17,7 @@
     mode: '0644'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+  notify: systemctl restart postfix
 
 - name: create postfix master.cf
   become: true
@@ -26,6 +27,7 @@
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
     mode: '0644'
+  notify: systemctl restart postfix
 
 - name: create postfix submission_header_cleanup
   become: true
@@ -35,6 +37,7 @@
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
     mode: '0644'
+  notify: systemctl restart postfix
 
 - name: template of accounts.cf
   become: true
@@ -44,6 +47,7 @@
     mode: '0644'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+  notify: systemctl restart postfix
 
 - name: template of aliases.cf
   become: true
@@ -53,6 +57,7 @@
     mode: '0644'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+  notify: systemctl restart postfix
 
 - name: template of domains.cf
   become: true
@@ -62,6 +67,7 @@
     mode: '0644'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+  notify: systemctl restart postfix
 
 - name: template of recipient-access.cf
   become: true
@@ -71,6 +77,7 @@
     mode: '0644'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+  notify: systemctl restart postfix
 
 - name: template of sender-login-maps.cf
   become: true
@@ -80,6 +87,7 @@
     mode: '0644'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
+  notify: systemctl restart postfix
 
 - name: template of tls-policy.cf
   become: true
@@ -89,4 +97,4 @@
     mode: '0644'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
-
+  notify: systemctl restart postfix
