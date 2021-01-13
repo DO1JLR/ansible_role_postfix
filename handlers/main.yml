@@ -3,5 +3,5 @@
   become: true
   service:
     name: 'postfix.service'
-    state: 'restarted.service'
+    state: 'restarted'
   when: postfix__service_enabled
