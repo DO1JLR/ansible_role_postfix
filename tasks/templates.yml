@@ -98,9 +98,9 @@
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
 
-- name: template of tls-policy.cf
+- name: option without_ptr
   become: true
-  template:
+  copy:
     content: "{{ postfix__without_ptr }}"
     dest: '/etc/postfix/without_ptr'
     mode: '0640'
