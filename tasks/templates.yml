@@ -6,14 +6,14 @@
     state: 'directory'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
-    mode: '0754'
+    mode: '0750'
 
 - name: template of main.cf
   become: true
   template:
     src: 'templates/main.cf.j2'
     dest: '/etc/postfix/main.cf'
-    mode: '0644'
+    mode: '0640'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
@@ -25,7 +25,7 @@
     dest: '/etc/postfix/master.cf'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
-    mode: '0644'
+    mode: '0640'
   notify: systemctl restart postfix
 
 - name: create postfix submission_header_cleanup
@@ -35,7 +35,7 @@
     dest: '/etc/postfix/submission_header_cleanup'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
-    mode: '0644'
+    mode: '0640'
   notify: systemctl restart postfix
 
 - name: template of accounts.cf
@@ -43,7 +43,7 @@
   template:
     src: 'templates/sql/accounts.cf.j2'
     dest: '/etc/postfix/sql/accounts.cf'
-    mode: '0644'
+    mode: '0640'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
@@ -53,7 +53,7 @@
   template:
     src: 'templates/sql/aliases.cf.j2'
     dest: '/etc/postfix/sql/aliases.cf'
-    mode: '0644'
+    mode: '0640'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
@@ -63,7 +63,7 @@
   template:
     src: 'templates/sql/domains.cf.j2'
     dest: '/etc/postfix/sql/domains.cf'
-    mode: '0644'
+    mode: '0640'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
@@ -73,7 +73,7 @@
   template:
     src: 'templates/sql/recipient-access.cf.j2'
     dest: '/etc/postfix/sql/recipient-access.cf'
-    mode: '0644'
+    mode: '0640'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
@@ -83,7 +83,7 @@
   template:
     src: 'templates/sql/sender-login-maps.cf.j2'
     dest: '/etc/postfix/sql/sender-login-maps.cf'
-    mode: '0644'
+    mode: '0640'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
@@ -93,7 +93,7 @@
   template:
     src: 'templates/sql/tls-policy.cf.j2'
     dest: '/etc/postfix/sql/tls-policy.cf'
-    mode: '0644'
+    mode: '0640'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
