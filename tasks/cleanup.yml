@@ -1,5 +1,5 @@
 ---
-- name: delete default config
+- name: delete /etc/postfix/sasl/
   become: true
   file:
     state: 'absent'

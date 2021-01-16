@@ -4,10 +4,9 @@
   file:
     path: '/etc/postfix/sql'
     state: 'directory'
-    recurse: true
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
-    mode: '0755'
+    mode: '0754'
 
 - name: template of main.cf
   become: true

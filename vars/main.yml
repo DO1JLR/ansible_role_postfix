@@ -1,4 +1,4 @@
 ---
 # versionscheck
-playbook_version_number: 07 # should be a integer
+playbook_version_number: 8 # should be a integer
 playbook_version_path: 'role-postfix_roles-ansible_github.version'
