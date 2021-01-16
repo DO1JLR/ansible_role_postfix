@@ -97,3 +97,13 @@
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
   notify: systemctl restart postfix
+
+- name: template of tls-policy.cf
+  become: true
+  template:
+    content: "{{ postfix__without_ptr }}"
+    dest: '/etc/postfix/without_ptr'
+    mode: '0640'
+    owner: "{{ postfix__user }}"
+    group: "{{ postfix__group }}"
+  notify: systemctl restart postfix

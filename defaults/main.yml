@@ -18,6 +18,10 @@ postfix__inet_interfaces: "127.0.0.1, ::1, hostvars[inventory_hostname].ansible_
 postfix__tls_cert: "/var/lib/acme/live/{{ ansible_fqdn }}/fullchain"
 postfix__tls_key: "/var/lib/acme/live/{{ ansible_fqdn }}/privkey"
 
+# without_ptr
+postfix__without_ptr: ''
+# example: [2001:db8::beef] OK
+# Der Server mit der IP 2001:db8::beef muss dann keinen gültigen PTR-Record (Reverse DNS) mehr besitzen und wird trotzdem akzeptiert.
 
 # should we do a version check? (recomended)
 submodules_versioncheck: false
