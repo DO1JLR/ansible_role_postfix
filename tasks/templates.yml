@@ -106,4 +106,6 @@
     mode: '0640'
     owner: "{{ postfix__user }}"
     group: "{{ postfix__group }}"
-  notify: systemctl restart postfix
+  notify:
+    - systemctl restart postfix
+    - run postmap

@@ -5,3 +5,13 @@
     name: 'postfix.service'
     state: 'restarted'
   when: postfix__service_enabled
+
+- name: run postmap
+  become: true
+  ansible.builtin.shell: postmap /etc/postfix/without_ptr
+  notify: run newaliases
+
+- name: run newaliases
+  become: true
+  ansible.builtin.shell: newaliases
+
