@@ -12,7 +12,7 @@ postfix__myhostname: "{{ ansible_fqdn }}"
 
 # interface config
 postfix__mynetworks: '127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128'
-postfix__inet_interfaces: "127.0.0.1, ::1, {{ hostvars[ inventory_hostname ].ansible_default_ipv4.address }}, {{ hostvars[ inventory_hostname ].ansible_default_ipv6.address }}"
+postfix__inet_interfaces: "127.0.0.1, ::1"
 
 # tls
 postfix__tls_cert: "/var/lib/acme/live/{{ ansible_fqdn }}/fullchain"

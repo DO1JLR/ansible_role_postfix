@@ -14,4 +14,3 @@
 - name: run newaliases
   become: true
   ansible.builtin.shell: newaliases
-

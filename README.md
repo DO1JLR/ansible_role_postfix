@@ -1,6 +1,11 @@
 # ansible_role_template
 Template for Ansible roles
 
+```
+postfix__inet_interfaces: "127.0.0.1, ::1"
+
+postfix__inet_interfaces: "127.0.0.1, ::1, {{ hostvars[ inventory_hostname ].ansible_default_ipv4.address }}, {{ hostvars[ inventory_hostname ].ansible_default_ipv6.address }}"
+
  Testing
 ----------
 This role is tested with [these github-action](https://github.com/search?q=topic%3Acheck-ansible+topic%3Agithub-actions+org%3Aroles-ansible&type=Repositories) tests for different versions of differen linux systems. Linting is tested via travis-ci and the  [ansible-lint action](https://github.com/marketplace/actions/ansible-lint).
