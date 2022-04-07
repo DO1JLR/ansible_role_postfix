@@ -1,18 +1,18 @@
 ---
 - name: delete /etc/postfix/sasl/
   become: true
-  file:
+  ansible.builtin.file:
     state: 'absent'
     path: '/etc/postfix/sasl/'
 
 - name: delete default main.cf.proto
   become: true
-  file:
+  ansible.builtin.file:
     state: 'absent'
     path: '/etc/postfix/main.cf.proto'
 
 - name: delete default master.cf.proto
   become: true
-  file:
+  ansible.builtin.file:
     state: 'absent'
     path: '/etc/postfix/master.cf.proto'
