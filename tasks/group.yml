@@ -1,5 +1,6 @@
 ---
 - name: Ensure group postfix exists
-  group:
+  become: true
+  ansible.builtin.group:
     name: 'postfix'
     state: present

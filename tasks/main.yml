@@ -1,34 +1,35 @@
 ---
-- include_tasks: versioncheck.yml
+- name: run optional versionscheck
+  ansible.builtin.include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
 
 - name: make sure group is present
-  include_tasks: group.yml
+  ansible.builtin.include_tasks: group.yml
 
 - name: Ensure postfix is installed.
   become: true
-  package:
+  ansible.builtin.package:
     name:
       - postfix
       - postfix-mysql
     state: present
 
 - name: cleanup some not needed default postfix files
-  include_tasks: cleanup.yml
+  ansible.builtin.include_tasks: cleanup.yml
 
 - name: create postfix templates
-  include_tasks: templates.yml
+  ansible.builtin.include_tasks: templates.yml
 
 - name: create dhparam
   become: true
-  openssl_dhparam:
+  community.crypto.openssl_dhparam:
     path: '/etc/postfix/dh2048.pem'
     size: 2048
   notify: systemctl restart postfix
 
 - name: Ensure postfix is started and enabled at boot
   become: true
-  service:
+  ansible.builtin.service:
     name: 'postfix.service'
     state: "{{ postfix__service_state }}"
     enabled: "{{ postfix__service_enabled }}"

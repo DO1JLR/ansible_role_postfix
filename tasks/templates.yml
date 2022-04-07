@@ -1,7 +1,7 @@
 ---
 - name: mkdir /etc/postfix/sql
   become: true
-  file:
+  ansible.builtin.file:
     path: '/etc/postfix/sql'
     state: 'directory'
     owner: "{{ postfix__user }}"
@@ -10,7 +10,7 @@
 
 - name: template of main.cf
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/main.cf.j2'
     dest: '/etc/postfix/main.cf'
     mode: '0640'
@@ -20,7 +20,7 @@
 
 - name: create postfix master.cf
   become: true
-  copy:
+  ansible.builtin.copy:
     src: 'files/master.cf'
     dest: '/etc/postfix/master.cf'
     owner: "{{ postfix__user }}"
@@ -30,7 +30,7 @@
 
 - name: create postfix submission_header_cleanup
   become: true
-  copy:
+  ansible.builtin.copy:
     src: 'files/submission_header_cleanup'
     dest: '/etc/postfix/submission_header_cleanup'
     owner: "{{ postfix__user }}"
@@ -40,7 +40,7 @@
 
 - name: template of accounts.cf
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/sql/accounts.cf.j2'
     dest: '/etc/postfix/sql/accounts.cf'
     mode: '0640'
@@ -50,7 +50,7 @@
 
 - name: template of aliases.cf
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/sql/aliases.cf.j2'
     dest: '/etc/postfix/sql/aliases.cf'
     mode: '0640'
@@ -60,7 +60,7 @@
 
 - name: template of domains.cf
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/sql/domains.cf.j2'
     dest: '/etc/postfix/sql/domains.cf'
     mode: '0640'
@@ -70,7 +70,7 @@
 
 - name: template of recipient-access.cf
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/sql/recipient-access.cf.j2'
     dest: '/etc/postfix/sql/recipient-access.cf'
     mode: '0640'
@@ -80,7 +80,7 @@
 
 - name: template of sender-login-maps.cf
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/sql/sender-login-maps.cf.j2'
     dest: '/etc/postfix/sql/sender-login-maps.cf'
     mode: '0640'
@@ -90,7 +90,7 @@
 
 - name: template of tls-policy.cf
   become: true
-  template:
+  ansible.builtin.template:
     src: 'templates/sql/tls-policy.cf.j2'
     dest: '/etc/postfix/sql/tls-policy.cf'
     mode: '0640'
@@ -100,7 +100,7 @@
 
 - name: option without_ptr
   become: true
-  copy:
+  ansible.builtin.copy:
     content: "{{ postfix__without_ptr }}"
     dest: '/etc/postfix/without_ptr'
     mode: '0640'
